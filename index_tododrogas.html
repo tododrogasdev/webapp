@@ -1,10 +1,10 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Tododrogas - Página en Construcción</title>
+
   <style>
     * {
       box-sizing: border-box;
@@ -59,9 +59,68 @@
       font-size: 0.9em;
       color: #ddd;
     }
+
+    /* ---------------------------------- */
+    /*            POPUP RESPONSIVE        */
+    /* ---------------------------------- */
+
+    .popup-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      display: none; /* Se activa con JS */
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      padding: 20px;
+    }
+
+    .popup-content {
+      background: #fff;
+      padding: 0;
+      border-radius: 12px;
+      max-width: 90vw;
+      max-height: 90vh;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .popup-content img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      border-radius: 12px;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 8px;
+      right: 12px;
+      font-size: 28px;
+      color: black;
+      cursor: pointer;
+      font-weight: bold;
+      z-index: 2000;
+    }
   </style>
 </head>
+
 <body>
+
+  <!-- POPUP -->
+  <div class="popup-overlay" id="popup">
+    <div class="popup-content">
+      <span class="close-btn" id="closePopup">&times;</span>
+      <img src="https://raw.githubusercontent.com/tododrogasdev/webapp/refs/heads/main/Logo/saludtotal_tododrogas.png" alt="Anuncio" />
+    </div>
+  </div>
+
   <div class="container">
     <h1>¡Tododrogas está trabajando en algo genial!</h1>
     <p>Gracias por tu paciencia. Muy pronto estaremos en línea.</p>
@@ -70,5 +129,25 @@
       © 2025 Tododrogas. Todos los derechos reservados.
     </footer>
   </div>
+
+  <script>
+    // Mostrar popup al cargar
+    window.onload = function () {
+      document.getElementById("popup").style.display = "flex";
+    };
+
+    // Cerrar con botón
+    document.getElementById("closePopup").onclick = function () {
+      document.getElementById("popup").style.display = "none";
+    };
+
+    // Cerrar al hacer clic fuera del contenido
+    document.getElementById("popup").onclick = function (e) {
+      if (e.target.id === "popup") {
+        document.getElementById("popup").style.display = "none";
+      }
+    };
+  </script>
+
 </body>
 </html>
